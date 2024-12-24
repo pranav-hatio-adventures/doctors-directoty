@@ -1,3 +1,3 @@
-const tableABasePath = "/A";
+const tableABasePath = "/tbliQEmc8WKiXoyDX";
 
 export { tableABasePath };
