@@ -5,8 +5,23 @@ import { TableAData } from "../../types/global.type";
 
 export async function getTableAData(
   selectedDistrictCode: string,
+  selectedSpecialisation: Array<string>,
   offset?: string
 ) {
+  function getFilterByFormula() {
+    let filterByFormula = `${TABLE_A_FIELDS.district} = "${selectedDistrictCode}"`;
+    if (selectedSpecialisation.length == 0) return filterByFormula;
+    let OR_FILTER = "OR( ";
+    selectedSpecialisation.forEach((spec, index) => {
+      OR_FILTER += `FIND("${spec}",${TABLE_A_FIELDS.specialisation})${
+        selectedSpecialisation.length - 1 == index ? "" : ","
+      } `;
+    });
+    OR_FILTER += ")";
+    let AND_FILTER = "AND( ";
+    return (AND_FILTER += filterByFormula += `, ${OR_FILTER} )`);
+  }
+
   return (
     await customAxios.post(`${tableABasePath}/listRecords`, {
       offset: offset,
@@ -26,7 +41,7 @@ export async function getTableAData(
         TABLE_A_FIELDS.specialisation,
         TABLE_A_FIELDS.fee,
       ],
-      filterByFormula: `${TABLE_A_FIELDS.district} = "${selectedDistrictCode}"`,
+      filterByFormula: getFilterByFormula(),
     })
   ).data as TableAData;
 }
