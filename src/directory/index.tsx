@@ -2,7 +2,7 @@ import { Select, SelectItem } from "@nextui-org/select";
 import PageLayout from "../common/PageLayout";
 import { districtData } from "../common/utils/data/district.data";
 import { useGetTableAData } from "../api/tableA/tableA.query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircularProgress } from "@nextui-org/progress";
 import UserCard from "../common/components/UserCard";
 import { specialisationData } from "../common/utils/data/specialisationData";
@@ -13,14 +13,23 @@ function Directory() {
   const [selectedSpecialisation, setSelectedSpecialisation] = useState<
     Array<string>
   >([]);
+  const [offset, setOffset] = useState<string>("");
 
   const { data, mutate, error, isPending } = useGetTableAData();
 
   const onSubmit = () => {
-    mutate({ selectedDistrictCode, offset: data?.offset });
+    mutate({
+      selectedDistrictCode,
+      selectedSpecialisation,
+      offset,
+    });
   };
 
-  console.log(selectedDistrictCode, selectedSpecialisation);
+  useEffect(() => {
+    if (data?.offset) setOffset(data?.offset);
+    else setOffset("");
+  }, [data?.offset]);
+
   if (error) return <div>Error</div>;
   return (
     <PageLayout>
@@ -30,7 +39,10 @@ function Directory() {
             isRequired
             label="location"
             selectedKeys={[`${selectedDistrictCode}`]}
-            onChange={(e) => setSelectedDistrictCode(e.target.value)}
+            onChange={(e) => {
+              setSelectedDistrictCode(e.target.value);
+              setOffset("");
+            }}
           >
             {districtData.map((d) => (
               <SelectItem key={d.key}>{d.label}</SelectItem>
@@ -42,7 +54,12 @@ function Directory() {
             selectedKeys={selectedSpecialisation}
             onChange={(e) => {
               const updated = e.target.value.split(`,`);
-              setSelectedSpecialisation(updated);
+              if (updated.length == 1 && updated[0].length == 0) {
+                setSelectedSpecialisation([]);
+              } else {
+                setSelectedSpecialisation(updated);
+              }
+              setOffset("");
             }}
           >
             {specialisationData.map((s) => (
@@ -53,7 +70,7 @@ function Directory() {
             <Button onPress={() => onSubmit()} variant="solid" color="primary">
               {isPending ? (
                 <CircularProgress aria-label="Loading..." size="sm" />
-              ) : data?.offset ? (
+              ) : offset ? (
                 "Refresh"
               ) : (
                 "Submit"

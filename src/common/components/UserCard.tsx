@@ -43,14 +43,14 @@ function UserCard(props: TableADataRecord) {
     }
   };
 
-/**
- * Renders an AccordionItem component displaying a list of specializations.
- * Each specialization is shown as a Chip component.
- * If no specializations are provided, it returns an empty fragment.
- *
- * @param {Array<string>} specialization - An array of specialization strings.
- * @returns {JSX.Element} An AccordionItem with specialization Chips or an empty fragment if no specialization is given.
- */
+  /**
+   * Renders an AccordionItem component displaying a list of specializations.
+   * Each specialization is shown as a Chip component.
+   * If no specializations are provided, it returns an empty fragment.
+   *
+   * @param {Array<string>} specialization - An array of specialization strings.
+   * @returns {JSX.Element} An AccordionItem with specialization Chips or an empty fragment if no specialization is given.
+   */
   const specializationDisplay = (specialization: Array<string>) => {
     if (!specialization || specialization.length == 0) return <></>;
     else
@@ -66,6 +66,48 @@ function UserCard(props: TableADataRecord) {
                 {spec}
               </Chip>
             ))}
+          </div>
+        </AccordionItem>
+      );
+  };
+
+  const contactDetails = (
+    phone: string,
+    email: string,
+    otherContactDetails: string,
+    otherLinks: string
+  ) => {
+    if (!phone && !email && !otherContactDetails && !otherLinks) return <></>;
+    else
+      return (
+        <AccordionItem
+          key="contactDetails"
+          aria-label="Contact Details"
+          title="Contact Details"
+          onPress={(e) => console.log(e)}
+        >
+          <div className="flex flex-col gap-2">
+            {phone && (
+              <div className="flex flex-col gap-1 text-sm">
+                <span className="font-semibold">Phone:</span> {phone}
+              </div>
+            )}
+            {email && (
+              <div className="flex flex-col gap-1 text-sm">
+                <span className="font-semibold">Email:</span> {email}
+              </div>
+            )}
+            {otherContactDetails && (
+              <div className="flex flex-col gap-1 text-sm">
+                <span className="font-semibold">Other Contact Details:</span>{" "}
+                {otherContactDetails}
+              </div>
+            )}
+            {otherLinks && (
+              <div className="flex flex-col gap-1 text-sm">
+                <span className="font-semibold">Other Links:</span> {otherLinks}
+              </div>
+            )}
           </div>
         </AccordionItem>
       );
@@ -112,11 +154,18 @@ function UserCard(props: TableADataRecord) {
 
         <Accordion
           isCompact
-          defaultExpandedKeys={["specialisation"]}
           variant="light"
+          selectionMode="multiple"
+          defaultExpandedKeys={["specialisation"]}
           itemClasses={{ title: "text-xs" }}
         >
           {specializationDisplay(props.fields.specialisation)}
+          {contactDetails(
+            props.fields.phone,
+            props.fields.email,
+            props.fields.otherContactDetails,
+            props.fields.otherLinks
+          )}
         </Accordion>
       </CardBody>
     </Card>
