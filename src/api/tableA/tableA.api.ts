@@ -1,7 +1,7 @@
 import { tableABasePath } from ".";
 import { customAxios } from "..";
 import { TABLE_A_FIELDS } from "../../types/enums";
-import { TableAData, TableADataField } from "../../types/global.type";
+import { TableAData } from "../../types/global.type";
 
 export async function getTableAData(
   selectedDistrictCode: string,
