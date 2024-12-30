@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { getTableAData } from "./tableA.api";
+import { getTableAData, patchTableAData } from "./tableA.api";
+import { TableAData } from "../../types/global.type";
 
 export const useGetTableAData = () =>
   useMutation({
@@ -13,4 +14,9 @@ export const useGetTableAData = () =>
         data.selectedSpecialisation,
         data.offset
       ),
+  });
+
+export const usePatchTableAData = () =>
+  useMutation({
+    mutationFn: (data: Partial<TableAData>) => patchTableAData(data),
   });

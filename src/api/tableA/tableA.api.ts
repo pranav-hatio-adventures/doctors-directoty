@@ -1,7 +1,7 @@
 import { tableABasePath } from ".";
 import { customAxios } from "..";
 import { TABLE_A_FIELDS } from "../../types/enums";
-import { TableAData } from "../../types/global.type";
+import { TableAData, TableADataField } from "../../types/global.type";
 
 export async function getTableAData(
   selectedDistrictCode: string,
@@ -44,4 +44,8 @@ export async function getTableAData(
       filterByFormula: getFilterByFormula(),
     })
   ).data as TableAData;
+}
+
+export async function patchTableAData(data: Partial<TableAData>) {
+  return (await customAxios.patch(tableABasePath, data)).data as TableAData;
 }
