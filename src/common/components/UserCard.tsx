@@ -4,6 +4,7 @@ import { Chip } from "@nextui-org/chip";
 import { TableADataRecord } from "../../types/global.type";
 import { MODE_ENUM } from "../../types/enums";
 import { districtsWithCode } from "../utils/data/district.data";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "../svgIcons";
 
 /**
  * A Card component that displays a single doctor's information, including their image, name, district, mode (online/offline), and specialisation.
@@ -71,6 +72,18 @@ function UserCard(props: TableADataRecord) {
       );
   };
 
+  /**
+   * Renders an AccordionItem component displaying the contact details of a user.
+   * If all contact details are empty, it returns an empty fragment.
+   * The contact details are displayed in a column, with each detail on a
+   * separate line. The phone, email, otherContactDetails, and otherLinks are
+   * displayed in that order.
+   * @param {string} phone - The phone number of the user.
+   * @param {string} email - The email of the user.
+   * @param {string} otherContactDetails - The other contact details of the user.
+   * @param {string} otherLinks - The other links of the user.
+   * @returns {JSX.Element} An AccordionItem with contact details or an empty fragment if all contact details are empty.
+   */
   const contactDetails = (
     phone: string,
     email: string,
@@ -85,6 +98,9 @@ function UserCard(props: TableADataRecord) {
           aria-label="Contact Details"
           title="Contact Details"
           onPress={(e) => console.log(e)}
+          indicator={({ isOpen }) =>
+            isOpen ? <EyeFilledIcon /> : <EyeSlashFilledIcon />
+          }
         >
           <div className="flex flex-col gap-2">
             {phone && (
