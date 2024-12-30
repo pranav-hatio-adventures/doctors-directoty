@@ -52,6 +52,14 @@ function UserCard(props: TableADataRecord) {
    * @param {Array<string>} specialization - An array of specialization strings.
    * @returns {JSX.Element} An AccordionItem with specialization Chips or an empty fragment if no specialization is given.
    */
+  /**
+   * Renders an AccordionItem component displaying a list of specializations.
+   * Each specialization is shown as a Chip component.
+   * If no specializations are provided, it returns an empty fragment.
+   *
+   * @param {Array<string>} specialization - An array of specialization strings.
+   * @returns {JSX.Element} An AccordionItem with specialization Chips or an empty fragment if no specialization is given.
+   */
   const specializationDisplay = (specialization: Array<string>) => {
     if (!specialization || specialization.length == 0) return <></>;
     else
