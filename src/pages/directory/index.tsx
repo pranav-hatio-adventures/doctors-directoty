@@ -1,11 +1,11 @@
 import { Select, SelectItem } from "@nextui-org/select";
-import PageLayout from "../common/PageLayout";
-import { districtData } from "../common/utils/data/district.data";
-import { useGetTableAData } from "../api/tableA/tableA.query";
+import PageLayout from "../../common/PageLayout";
+import { districtData } from "../../common/utils/data/district.data";
+import { useGetTableAData } from "../../api/tableA/tableA.query";
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@nextui-org/progress";
-import UserCard from "../common/components/UserCard";
-import { specialisationData } from "../common/utils/data/specialisationData";
+import UserCard from "../../common/components/UserCard";
+import { specialisationData } from "../../common/utils/data/specialisationData";
 import { Button } from "@nextui-org/button";
 
 function Directory() {
