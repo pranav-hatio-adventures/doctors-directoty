@@ -69,7 +69,7 @@ const Header = () => {
             />
           </div>
           {navMenuOpened && (
-            <div className="min-w-40 absolute top-10 right-0 rounded px-4 py-3 bg-secondary-color">
+            <div className="min-w-40 absolute top-10 right-0 rounded px-4 py-3 bg-secondary-color z-50">
               <img
                 src={gsckLogo}
                 alt="logo of global shapers community kochi"

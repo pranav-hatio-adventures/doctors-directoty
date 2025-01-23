@@ -1,5 +1,11 @@
+import ServiceSection from "../../sections/home/Services";
+
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <ServiceSection />
+    </div>
+  );
 };
 
 export default Home;

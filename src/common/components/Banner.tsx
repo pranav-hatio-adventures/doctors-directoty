@@ -7,7 +7,7 @@ const Banner = () => {
         <h2 className="text-primary-color font-bold text-xl md:text-3xl">
           Join us in creating a more mentally well Nation.
         </h2>
-        <p className="mt-3 text-xs text-tertiary-color md:text-sm">
+        <p className="mt-3 text-xs text-gray-dark-color md:text-sm">
           If you are mental health professional or know someone who, You can
           share their details with us.
         </p>
