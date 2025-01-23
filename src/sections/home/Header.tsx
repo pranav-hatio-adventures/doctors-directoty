@@ -8,10 +8,10 @@ const navData: Array<{
   label: string;
   href: string;
 }> = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Service", href: "#service" },
-  { label: "Video", href: "#video" },
+  { label: "Home", href: "/#hero" },
+  { label: "About", href: "/#about" },
+  { label: "Service", href: "/#service" },
+  { label: "Video", href: "/#video" },
 ];
 
 const Header = () => {
