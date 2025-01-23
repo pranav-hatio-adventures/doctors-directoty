@@ -4,10 +4,15 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@nextui-org/theme/dist/components/(accordion|button|card|chip|progress|select|divider|ripple|spinner|form|listbox|popover|scroll-shadow).js"
+    "./node_modules/@nextui-org/theme/dist/components/(accordion|button|card|chip|progress|select|divider|ripple|spinner|form|listbox|popover|scroll-shadow).js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary-color": "#F2441E",
+        "secondary-color": "#FFF7EF",
+      },
+    },
   },
   plugins: [nextui()],
 };

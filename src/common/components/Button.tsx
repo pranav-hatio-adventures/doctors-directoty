@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 const Button = (props: ButtonProps) => {
   const className = twMerge(
-    "rounded-xl text-sm text-white py-2 px-3 bg-primary-color",
+    "rounded-xl text-sm text-white py-3 px-3 bg-primary-color h-fit",
     props.buttonClassName
   );
 
