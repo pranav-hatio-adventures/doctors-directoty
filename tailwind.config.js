@@ -11,6 +11,8 @@ export default {
       colors: {
         "primary-color": "#F2441E",
         "secondary-color": "#FFF7EF",
+        "tertiary-color": "#0C5F7B",
+        "gray-color": "#999999",
       },
     },
   },

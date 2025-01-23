@@ -48,36 +48,38 @@ const Header = () => {
   );
 
   return (
-    <header className="flex items-center justify-between px-4 py-1 md:px-8 border-b">
-      <img
-        src={logo}
-        alt="logo of project preteeksha"
-        className="h-10 md:h-20"
-      />
-      <nav className="hidden md:block">{navBar()}</nav>
-      <div className="hidden md:block">{headerRightContent()}</div>
-      <div className="relative md:hidden">
-        <div
-          className="p-1 rounded bg-secondary-color"
-          typeof="button"
-          onClick={() => setNavMenuOpened(!navMenuOpened)}
-        >
-          <HamburgerIcon
-            className="h-6 text-primary-color"
-            iconClassName="stroke-primary-color"
-          />
-        </div>
-        {navMenuOpened && (
-          <div className="min-w-40 absolute top-10 right-0 rounded px-4 py-3 bg-secondary-color">
-            <img
-              src={gsckLogo}
-              alt="logo of global shapers community kochi"
-              className="w-12 h-12"
+    <header className="border-b">
+      <div className="flex items-center justify-between px-4 py-1 md:px-8 container mx-auto">
+        <img
+          src={logo}
+          alt="logo of project preteeksha"
+          className="h-10 md:h-20"
+        />
+        <nav className="hidden md:block">{navBar()}</nav>
+        <div className="hidden md:block">{headerRightContent()}</div>
+        <div className="relative md:hidden">
+          <div
+            className="p-1 rounded bg-secondary-color"
+            typeof="button"
+            onClick={() => setNavMenuOpened(!navMenuOpened)}
+          >
+            <HamburgerIcon
+              className="h-6 text-primary-color"
+              iconClassName="stroke-primary-color"
             />
-            <nav>{navBar()}</nav>
-            <div className="mt-2">{headerRightContent()}</div>
           </div>
-        )}
+          {navMenuOpened && (
+            <div className="min-w-40 absolute top-10 right-0 rounded px-4 py-3 bg-secondary-color">
+              <img
+                src={gsckLogo}
+                alt="logo of global shapers community kochi"
+                className="w-12 h-12"
+              />
+              <nav>{navBar()}</nav>
+              <div className="mt-2">{headerRightContent()}</div>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

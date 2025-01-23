@@ -1,10 +1,8 @@
-import Header from "../../sections/home/Header";
-
 const Home = () => {
   return (
-    <>
-      <Header />
-    </>
+    <div>
+      <h1>Home page</h1>
+    </div>
   );
 };
 
