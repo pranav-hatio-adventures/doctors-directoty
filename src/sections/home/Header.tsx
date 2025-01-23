@@ -48,8 +48,8 @@ const Header = () => {
   );
 
   return (
-    <header className="border-b">
-      <div className="flex items-center justify-between px-4 py-1 md:px-8 container mx-auto">
+    <header className="border-b px-4 py-1 md:px-8">
+      <div className="flex items-center justify-between container mx-auto">
         <img
           src={logo}
           alt="logo of project preteeksha"
