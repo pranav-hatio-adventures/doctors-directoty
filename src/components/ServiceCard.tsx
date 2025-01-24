@@ -5,7 +5,7 @@ interface ServiceCardProps {
 }
 const ServiceCard = (props: ServiceCardProps) => {
   return (
-    <div className="p-5 max-w-72 rounded-2xl bg-white md:p-8 md:max-w-80">
+    <div className="p-5 rounded-2xl bg-white md:p-8 basis basis-96">
       <div className="p-5 rounded-full bg-primary-color w-fit">
         <img src={props.imgSrc} alt="" className="w-9 h-9 md:w-11 md:h-11" />
       </div>
