@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 interface ButtonProps {
   label: string;
   link_to?: string;
+  rightSection?: React.ReactNode;
   onClick?: () => void;
   buttonClassName?: string;
 }
@@ -17,11 +18,13 @@ const Button = (props: ButtonProps) => {
     return (
       <Link to={props.link_to} className={className}>
         {props.label}
+        {props.rightSection}
       </Link>
     );
   return (
     <button className={className} onClick={props.onClick}>
       {props.label}
+      {props.rightSection}
     </button>
   );
 };

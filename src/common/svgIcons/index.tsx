@@ -161,3 +161,18 @@ export const YoutubeIcon = (props?: any) => {
     </svg>
   );
 };
+
+export const ArrowRightIcon = (props?: any) => {
+  return (
+    <svg fill="none" height="1em" viewBox="0 0 24 24" {...props}>
+      <path
+        className={props.iconClassName}
+        d="M5 12H19M19 12L13 6M19 12L13 18"
+        stroke="#000000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
