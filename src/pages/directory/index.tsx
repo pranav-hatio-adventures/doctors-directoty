@@ -1,12 +1,11 @@
 import { Select, SelectItem } from "@nextui-org/select";
-import PageLayout from "../../common/PageLayout";
 import { districtData } from "../../common/utils/data/district.data";
 import { useGetTableAData } from "../../api/tableA/tableA.query";
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@nextui-org/progress";
 import UserCard from "../../common/components/UserCard";
 import { specialisationData } from "../../common/utils/data/specialisationData";
-import { Button } from "@nextui-org/button";
+import Button from "../../common/components/Button";
 
 function Directory() {
   const [selectedDistrictCode, setSelectedDistrictCode] = useState("");
@@ -32,11 +31,12 @@ function Directory() {
 
   if (error) return <div>Error</div>;
   return (
-    <PageLayout>
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
+    <div className="bg-secondary-color py-10 px-4">
+      <div className="container mx-auto flex gap-4 flex-wrap">
+        <div className="flex flex-col gap-4 w-full bg-white px-5 py-8 shadow-md rounded-xl h-fit md:min-w-80 md:w-fit">
           <Select
             isRequired
+            className="bg-secondary-color"
             label="location"
             selectedKeys={[`${selectedDistrictCode}`]}
             onChange={(e) => {
@@ -66,19 +66,16 @@ function Directory() {
               <SelectItem key={s}>{s}</SelectItem>
             ))}
           </Select>
-          <div className="flex justify-end">
-            <Button onPress={() => onSubmit()} variant="solid" color="primary">
-              {isPending ? (
-                <CircularProgress aria-label="Loading..." size="sm" />
-              ) : offset ? (
-                "Refresh"
-              ) : (
-                "Submit"
-              )}
-            </Button>
-          </div>
+          <Button
+            buttonClassName="flex gap-2 justify-center items-center"
+            label={isPending ? "Loading..." : offset ? "Refresh" : "Submit"}
+            onClick={() => onSubmit()}
+            rightSection={
+              isPending && <CircularProgress aria-label="Loading..." />
+            }
+          />
         </div>
-        <div className="grid flex-1 grid-cols-3 gap-4 align-top">
+        <div className="flex flex-1 gap-4 align-top w-full flex-wrap md:min-w-80">
           {data?.records.map((record) => (
             <div className="flex justify-center">
               <UserCard {...record} />
@@ -86,7 +83,7 @@ function Directory() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </div>
   );
 }
 
