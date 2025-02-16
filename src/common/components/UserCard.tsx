@@ -140,7 +140,7 @@ function UserCard(props: TableADataRecord) {
   return (
     <Card
       shadow="none"
-      classNames={{ base: "border max-w-[300px] min-w-[250px] p-2 gap-3" }}
+      classNames={{ base: "border max-w-[300px] min-w-[250px] p-2 gap-3 h-fit" }}
       key={props.id}
     >
       <CardHeader className="relative flex justify-center p-0">

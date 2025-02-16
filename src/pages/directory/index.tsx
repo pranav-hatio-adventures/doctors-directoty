@@ -4,14 +4,14 @@ import { useGetTableAData } from "../../api/tableA/tableA.query";
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@nextui-org/progress";
 import UserCard from "../../common/components/UserCard";
-import { specialisationData } from "../../common/utils/data/specialisationData";
+// import { specialisationData } from "../../common/utils/data/specialisationData";
 import Button from "../../common/components/Button";
 
 function Directory() {
   const [selectedDistrictCode, setSelectedDistrictCode] = useState("");
-  const [selectedSpecialisation, setSelectedSpecialisation] = useState<
-    Array<string>
-  >([]);
+  // const [selectedSpecialisation, setSelectedSpecialisation] = useState<
+  //   Array<string>
+  // >([]);
   const [offset, setOffset] = useState<string>("");
 
   const { data, mutate, error, isPending } = useGetTableAData();
@@ -19,7 +19,8 @@ function Directory() {
   const onSubmit = () => {
     mutate({
       selectedDistrictCode,
-      selectedSpecialisation,
+      //TODO uncomment when specialization is being used
+      // selectedSpecialisation,
       offset,
     });
   };
@@ -48,7 +49,8 @@ function Directory() {
               <SelectItem key={d.key}>{d.label}</SelectItem>
             ))}
           </Select>
-          <Select
+          {/* Specialisation Select is disabled for now */}
+          {/* <Select
             selectionMode="multiple"
             label="specialisation"
             selectedKeys={selectedSpecialisation}
@@ -65,7 +67,7 @@ function Directory() {
             {specialisationData.map((s) => (
               <SelectItem key={s}>{s}</SelectItem>
             ))}
-          </Select>
+          </Select> */}
           <Button
             buttonClassName="flex gap-2 justify-center items-center"
             label={isPending ? "Loading..." : offset ? "Refresh" : "Submit"}
@@ -75,12 +77,24 @@ function Directory() {
             }
           />
         </div>
-        <div className="flex flex-1 gap-4 align-top w-full flex-wrap md:min-w-80">
-          {data?.records.map((record) => (
-            <div className="flex justify-center">
-              <UserCard {...record} />
+        <div className="flex flex-1 gap-4 align-top w-full flex-wrap md:min-w-80 min-h-[500px]">
+          {data && data.records.length > 0 ? (
+            data?.records.map((record) => (
+              <div className="flex justify-center">
+                <UserCard {...record} />
+              </div>
+            ))
+          ) : isPending ? (
+            <div>Loading</div>
+          ) : (
+            <div>
+              <div>
+                {selectedDistrictCode !== "" && data
+                  ? "This location dosent contain any professionals. Try selecting a different location"
+                  : "Select a location to continue"}
+              </div>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>

@@ -6,12 +6,12 @@ export const useGetTableAData = () =>
   useMutation({
     mutationFn: (data: {
       selectedDistrictCode: string;
-      selectedSpecialisation: Array<string>;
+      // selectedSpecialisation: Array<string>;
       offset?: string;
     }) =>
       getTableAData(
         data.selectedDistrictCode,
-        data.selectedSpecialisation,
+        // data.selectedSpecialisation,
         data.offset
       ),
   });
